@@ -12,7 +12,7 @@ export default {
   name: 'app',
   data(){
     return{
-      jobs: []
+      jobs: [],
     }
   },
   mounted(){
@@ -22,7 +22,7 @@ export default {
   },
   components:{
     "jobs-list": JobsList,
-    "jobs-list-item": JobsListItem
+    "jobs-list-item": JobsListItem,
   }
 }
 </script>
