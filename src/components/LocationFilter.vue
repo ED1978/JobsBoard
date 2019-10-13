@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="location-filter">
     <label for="location-select">Filter Jobs by Location: </label>
-    <select id="location-select" v-on:change="handleSelect" v-model="selectedJob">
+    <select id="location-select" v-model="selectedJob">
       <option v-for="job in this.filteredByTitle">{{job.location}}</option>
     </select>
   </div>
@@ -11,9 +11,10 @@
 <script>
 import { eventBus } from '../main.js'
 export default {
-  name: "location-filter",props: ['jobs'],
+  name: "location-filter",
   data(){
     return{
+      selectedJob: null,
       filteredByTitle: null
     }
   },
@@ -25,6 +26,17 @@ export default {
   methods: {
     handleSelect(){
       eventBus.$emit('location-filtered', this.filteredJobs)
+    }
+  },
+  computed: {
+    filteredJobs() {
+      if(this.selectedJob) {
+        return this.filteredByTitle.filter((job) => {
+          return job.location.toLowerCase().includes(this.selectedJob.toLowerCase());
+        })
+      }else{
+        return this.filteredByTitle;
+      }
     }
   }
 }

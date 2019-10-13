@@ -16,7 +16,7 @@ export default {
       filteredJobs: null
     }
   },
-  props: ['jobs'],
+  // props: ['jobs'],
   components: {
     'jobs-list-item': JobsListItem
   },
