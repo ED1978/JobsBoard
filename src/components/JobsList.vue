@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="jobs-list">
     <ul>
       <jobs-list-item v-for="(job, index) in filteredJobs" :job="job" :key="index"></jobs-list-item>
     </ul>
@@ -30,7 +30,7 @@ export default {
     filteredJobs() {
       if(this.searchQuery) {
         return this.jobs.filter((job) => {
-          return job.location.toLowerCase().includes(this.searchQuery.toLowerCase());
+          return job.title.toLowerCase().includes(this.searchQuery.toLowerCase());
         })
       }else{
         return this.jobs;
@@ -41,4 +41,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#jobs-list {
+  position: relative;
+  top: 30px;
+}
 </style>

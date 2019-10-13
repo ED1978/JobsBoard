@@ -2,8 +2,8 @@
   <div>
     <header>
       <h1>DevJobs.com</h1>
-      <search-filter id="search-filter"></search-filter>
     </header>
+    <filter-bar id="filter-bar"></filter-bar>
     <body>
       <jobs-list :jobs="jobs"></jobs-list>
     </body>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import SearchFilter from './components/SearchFilter.vue'
+import FilterBar from './components/FilterBar.vue'
 import JobsList from './components/JobsList.vue'
 export default {
   name: 'app',
@@ -27,7 +27,7 @@ export default {
   },
   components:{
     "jobs-list": JobsList,
-    "search-filter": SearchFilter
+    "filter-bar": FilterBar
   }
 }
 </script>
@@ -57,12 +57,25 @@ header h1{
   margin-left: 500px;
 }
 
+#filter-bar {
+  overflow: hidden;
+  position: fixed;
+  top: 80px;
+  height: 100vh;
+  width: 20%;
+  transition: 0.3s;
+  z-index: 9;
+  margin-top: 0;
+}
+
 body {
+  display: inline-block;
   position: relative;
-  margin-left: 0;
+  margin-left: 150px;
   padding-left: 0;
   top:60px;
-  /* background-color: #867982; */
-  width: 100%
+
+  width: 100%;
 }
+
 </style>
