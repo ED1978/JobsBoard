@@ -3,8 +3,9 @@
     <h3>Vacancy Details:</h3>
     <h4>Date Posted: {{job.created_at}}</h4>
     <h4>Description</h4>
-    <p>{{job.description}}</p>
-    <button type="button" name="button">Apply</button>
+    <p v-html="job.description"></p>
+    <h3>How to apply:</h3>
+    <p v-html="job.how_to_apply"></p>
     <button v-on:click="closeClicked" type="button" name="button">Close</button>
   </div>
 </template>

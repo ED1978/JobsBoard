@@ -6,6 +6,8 @@
       <h4>Company: {{job.company}}</h4>
       <p>Location: {{job.location}}</p>
       <button v-on:click="jobSelected" type="button" name="button">Details</button>
+      <button v-on:click="closeClicked" type="button" name="button">Close</button>
+
       <job-detail v-if="this.job == selectedJob" :job="selectedJob"></job-detail>
     </div>
   </div>
@@ -40,6 +42,9 @@ export default {
   methods: {
     jobSelected(){
       eventBus.$emit('job-selected', this.job);
+    },
+    closeClicked(){
+      eventBus.$emit('close-details');
     }
   },
 
