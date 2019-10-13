@@ -25,17 +25,6 @@ export default {
       this.filteredJobs = filteredJobs;
     })
   }
-  // computed: {
-  //   filteredJobs() {
-  //     if(this.searchQuery) {
-  //       return this.jobs.filter((job) => {
-  //         return job.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-  //       })
-  //     }else{
-  //       return this.jobs;
-  //     }
-  //   }
-  // }
 }
 </script>
 

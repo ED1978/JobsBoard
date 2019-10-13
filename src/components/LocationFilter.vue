@@ -2,19 +2,29 @@
   <div id="location-filter">
     <label for="location-select">Filter Jobs by Location: </label>
     <select id="location-select" v-on:change="handleSelect" v-model="selectedJob">
-
+      <option v-for="job in this.filteredByTitle">{{job.location}}</option>
     </select>
   </div>
 
 </template>
 
 <script>
+import { eventBus } from '../main.js'
 export default {
-  name: "location-filter",
-  props: ['jobs'],
+  name: "location-filter",props: ['jobs'],
   data(){
     return{
-      selectedJob: null
+      filteredByTitle: null
+    }
+  },
+  mounted(){
+    eventBus.$on('title-filtered', (filteredJobs) => {
+      this.filteredByTitle = filteredJobs;
+    })
+  },
+  methods: {
+    handleSelect(){
+      eventBus.$emit('location-filtered', this.filteredJobs)
     }
   }
 }
