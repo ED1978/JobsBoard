@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="title-filter">
     <label for="input-box">Filter Jobs by Title: </label>
-    <input id="input-box" type="text" v-model="searchQuery" v-on:keyup="searchJobs" placeholder="Seach jobs by Title...">
+    <input id="input-box" type="text" v-model="searchQuery" v-on:keyup="filterByTitle" placeholder="Seach jobs by Title...">
   </div>
 </template>
 
@@ -16,8 +16,19 @@ export default {
   },
   props: ['jobs'],
   methods: {
-    searchJobs(){
-      eventBus.$emit('search-query', this.searchQuery)
+    filterByTitle(){
+      eventBus.$emit('title-filtered', this.filteredJobs);
+    }
+  },
+  computed: {
+    filteredJobs() {
+      if(this.searchQuery) {
+        return this.jobs.filter((job) => {
+          return job.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+        })
+      }else{
+        return this.jobs;
+      }
     }
   }
 }
@@ -29,5 +40,6 @@ export default {
   border-bottom: 1px dotted black;
   padding-bottom: 20px;
   width: auto;
+  margin-left: 20px;
 }
 </style>

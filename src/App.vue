@@ -3,7 +3,7 @@
     <header>
       <h1>DevJobs.com</h1>
     </header>
-    <filter-bar id="filter-bar"></filter-bar>
+    <filter-bar :jobs="jobs" id="filter-bar"></filter-bar>
     <body>
       <jobs-list :jobs="jobs"></jobs-list>
     </body>
@@ -71,7 +71,7 @@ header h1{
 body {
   display: inline-block;
   position: relative;
-  margin-left: 150px;
+  margin-left: 50px;
   padding-left: 0;
   top:60px;
 

@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="jobs-list">
     <ul>
-      <jobs-list-item v-for="(job, index) in filteredJobs" :job="job" :key="index"></jobs-list-item>
+      <jobs-list-item v-for="(job, index) in this.filteredJobs" :job="job" :key="index"></jobs-list-item>
     </ul>
   </div>
 </template>
@@ -13,8 +13,7 @@ export default {
   name: 'jobs-list',
   data(){
     return{
-      searchQuery: "",
-      filter: ['title', 'location', 'type']
+      filteredJobs: null
     }
   },
   props: ['jobs'],
@@ -22,21 +21,21 @@ export default {
     'jobs-list-item': JobsListItem
   },
   mounted(){
-    eventBus.$on('search-query', (query) => {
-      this.searchQuery = query;
+    eventBus.$on('title-filtered', (filteredJobs) => {
+      this.filteredJobs = filteredJobs;
     })
-  },
-  computed: {
-    filteredJobs() {
-      if(this.searchQuery) {
-        return this.jobs.filter((job) => {
-          return job.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-        })
-      }else{
-        return this.jobs;
-      }
-    }
   }
+  // computed: {
+  //   filteredJobs() {
+  //     if(this.searchQuery) {
+  //       return this.jobs.filter((job) => {
+  //         return job.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+  //       })
+  //     }else{
+  //       return this.jobs;
+  //     }
+  //   }
+  // }
 }
 </script>
 
